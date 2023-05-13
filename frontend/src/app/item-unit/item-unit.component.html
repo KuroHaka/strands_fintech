@@ -1,1 +1,8 @@
-<p>item-unit works!</p>
+<div class="item">
+    <p>{{productName}}</p>
+    <p>{{price}}{{currency}}</p>
+    <p>{{units}}</p>
+    <ng-template ngFor user [ngForOf]="users">
+        <li>user</li>
+    </ng-template>
+</div>
