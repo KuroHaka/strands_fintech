@@ -11,6 +11,8 @@ import { UserDraggableComponent } from './user-draggable/user-draggable.componen
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserListComponent } from './user-list/user-list.component';
 import { ItemListComponent } from './item-list/item-list.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button'; 
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ItemListComponent } from './item-list/item-list.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

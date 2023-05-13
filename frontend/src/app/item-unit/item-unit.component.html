@@ -1,8 +1,22 @@
-<div class="item">
-    <p>{{productName}}</p>
-    <p>{{price}}{{currency}}</p>
-    <p>{{units}}</p>
-    <ng-template ngFor user [ngForOf]="users">
-        <li>user</li>
-    </ng-template>
-</div>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{productName}}</mat-card-title>
+        <mat-card-title>{{price}}{{currency}}</mat-card-title>
+        <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
+    </mat-card-header>
+</mat-card>
+
+
+<!-- <div class="item">
+    <div class="horizontal">
+        <div class="name">{{productName}}</div>
+        <div class="price">{{price}}{{currency}}</div>
+
+        <div class="units">{{units}}</div>
+        <div class="users">
+            <ng-template ngFor user [ngForOf]="users">
+                <li>user</li>
+            </ng-template>
+        </div>
+    </div>
+</div> -->
