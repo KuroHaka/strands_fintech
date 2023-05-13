@@ -1,36 +1,13 @@
 
 
-// var gDB = [];
-var gDB = [
-    {
-      display_name: 'Hola',
-      users: [ 'userPFM11', 'userPFM12' ],
-      products: [
-        {
-          product_name: 'Coca-Cola',
-          price: '1.5',
-          users: [],
-          units: 3,
-          id: 0
-        },
-        { product_name: 'Fanta', price: '2', users: [], units: 3, id: 1 },
-        {
-          product_name: 'KitKat',
-          price: '4.5',
-          users: [],
-          units: 3,
-          id: 2
-        }
-      ],
-      id: 0,
-      _nextProductID: 3
-    }
-  ];
+var gDB = [];
 
 var nextID = 0;
 
 
 const util = require('util')
+
+const stonks = require('./stonks')
 /*
 group: {
     display_name: string,
@@ -66,16 +43,27 @@ function GetProduct(group, productID){
     }
 }
 
+function GetUserFullName(userID, callback){
+    return new Promise(resolve => {
+        stonks.GetUser(userID, (body) => {
+            resolve(body);
+        })
+    })
+}
+
 // Aconsegueix info principal del grup i info del userID
-function CreateGroup(info, userID){
+async function CreateGroup(info, userID){
     gDB.push({
         "display_name": info.display_name,
-        "users": [userID],
+        "users": [],
         "products": [],
         "id": nextID,
         "_nextProductID": 0
     });
     nextID += 1;
+
+    var username = JSON.parse(await GetUserFullName(userID)); 
+    AddUserToGroup(username.name + " " + username.firstSurname, nextID - 1)
 
     return {
         "group_id": nextID - 1

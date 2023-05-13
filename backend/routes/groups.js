@@ -21,10 +21,8 @@ req.body:
 /*
 display_name: string
 */
-router.post("/create", (req, res) => {
-    res.json(pepe.CreateGroup(req.body.req, req.body.login.username));
-
-    pepe.debug();
+router.post("/create", async (req, res) => {
+    res.json(await pepe.CreateGroup(req.body.req, req.body.login.username));
 });
 
 router.post("/get", (req, res) => {
@@ -50,10 +48,10 @@ router.post("/users/remove", (req, res) => {
     res.json(pepe.RemoveUserFromGroup(data.user_id, data.group_id));
 });
 
-router.post("/create_receipt", (req, res) => {
+router.post("/create_receipt", async (req, res) => {
     data = req.body.req;
 
-    pepepy.PostImage({image: data.img64}, (imgRes) => {
+    pepepy.PostImage({image: data.img64}, async (imgRes) => {
         var products = [];
 
         for(var i = 0; i < imgRes.product_list.length; i++){
@@ -67,7 +65,7 @@ router.post("/create_receipt", (req, res) => {
 
         console.log("Products:", products);
 
-        var groupInfo = pepe.CreateGroup({
+        var groupInfo = await pepe.CreateGroup({
             "display_name": "Test"
         }, req.body.login.username);
 
