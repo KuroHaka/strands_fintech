@@ -3,6 +3,8 @@ const router = express.Router();
 
 const stonks = require('../modules/stonks.js');
 const pepe = require('../modules/group.js');
+const pepepy = require('../modules/pepepy.js');
+
 /*
 req.body: 
 {
@@ -46,6 +48,35 @@ router.post("/users/remove", (req, res) => {
     data = req.body.req;
 
     res.json(pepe.RemoveUserFromGroup(data.user_id, data.group_id));
+});
+
+router.post("/create_receipt", (req, res) => {
+    data = req.body.req;
+
+    pepepy.PostImage({image: data.img64}, (imgRes) => {
+        var products = [];
+
+        for(var i = 0; i < imgRes.product_list.length; i++){
+            var product = imgRes.product_list[i];
+            products.push({
+                product_name: product.productName,
+                price: product.price,
+                units: product.units
+            });
+        }
+
+        console.log("Products:", products);
+
+        var groupInfo = pepe.CreateGroup({
+            "display_name": "Test"
+        }, req.body.login.username);
+
+        pepe.AddProductsToGroup(products, groupInfo.group_id);
+
+        pepe.debug();
+
+        res.json(imgRes);
+    });
 });
 
 /*
