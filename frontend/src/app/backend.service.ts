@@ -39,7 +39,7 @@ export class BackendService {
   post(path: string, body: Object = {}, options: Object = {}): Observable<any> {
     return this.http.post(
       this.backendUrl + `${path}`,
-      JSON.stringify(body),
+      body,
       options
     ).pipe(catchError(this.formatErrors));
   }

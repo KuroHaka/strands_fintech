@@ -16,12 +16,5 @@ export class UserListComponent {
 
   ngOnInit(): void {
 
-      this.backend.get("test").subscribe((data: any) => {
-          this.users = [
-              { name: "Joan", contribution: data.totalElements }
-          ];
-
-          console.log(data);
-      })
   }
 }

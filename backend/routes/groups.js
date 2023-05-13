@@ -19,17 +19,22 @@ req.body:
 /*
 display_name: string
 */
-router.get("/create", (req, res) => {
+router.post("/create", (req, res) => {
     res.json(pepe.CreateGroup(req.body.req, req.body.login.username));
 
     pepe.debug();
+});
+
+router.post("/get", (req, res) => {
+    data = req.body.req;
+    res.json(pepe.GetGroup(data.group_id))
 });
 
 /*
 group_id: id
 user_id: id
 */
-router.get("/users/add", (req, res) => {
+router.post("/users/add", (req, res) => {
     data = req.body.req;
 
     res.json(pepe.AddUserToGroup(data.user_id, data.group_id));
@@ -37,7 +42,7 @@ router.get("/users/add", (req, res) => {
     pepe.debug();
 });
 
-router.get("/users/remove", (req, res) => {
+router.post("/users/remove", (req, res) => {
     data = req.body.req;
 
     res.json(pepe.RemoveUserFromGroup(data.user_id, data.group_id));

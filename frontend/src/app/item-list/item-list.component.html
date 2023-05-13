@@ -1,5 +1,18 @@
-<div *ngFor="let item of items">
-    <app-item-unit productName={{item.productName}} price={{item.price}} currency={{item.currency}}
-        users={{item.users}} units={{item.units}}>
-    </app-item-unit>
+<div class="center" cdkDropListGroup>
+<div class="products">
+    <div *ngFor="let item of items">
+        <app-item-unit 
+        productName={{item.productName}} price={{item.price}} currency={{item.currency}}  units={{item.units}} [users]="item.users">
+        </app-item-unit>
+        <div class="dropper" id={{item.id}} cdkDropList (cdkDropListDropped)="drop($event)"></div>
+    </div>
+</div>
+
+<div class="groups">
+    <mat-chip-set cdkDropList id="list2" cdkDropListOrientation="vertical">
+        <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
+            {{user.name}}
+        </mat-chip>
+    </mat-chip-set>
+</div>
 </div>

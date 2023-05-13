@@ -1,25 +1,25 @@
 <mat-card>
     <mat-card-header>
-        <mat-icon class="check" *ngIf="chips.length!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
-        <mat-icon class="check" *ngIf="chips.length==0" mat-card-avatar style="color: red;">cancel</mat-icon>
+        <mat-icon class="check" *ngIf="users.size!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
+        <mat-icon class="check" *ngIf="users.size==0" mat-card-avatar style="color: red;">cancel</mat-icon>
         <mat-card-title>{{productName}}</mat-card-title>
         <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
         <mat-card-content>
-            <mat-chip-row *ngFor="let chip of chips" (removed)="remove(chip)">
-                {{ chip }}
+            <mat-chip-row *ngFor="let user of users" (removed)="remove(user)">
+                {{ user }}
                 <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
                 </button>
             </mat-chip-row>
         </mat-card-content>
         <mat-card-footer>
-            <mat-card-subtitle>quantity</mat-card-subtitle>
+            <mat-card-subtitle>Quantity</mat-card-subtitle>
             <mat-card-title>
                 {{units}}
             </mat-card-title>
         </mat-card-footer>
         <mat-card-footer>
-            <mat-card-subtitle>price</mat-card-subtitle>
+            <mat-card-subtitle>Price</mat-card-subtitle>
             <mat-card-title>
                 {{price}}{{currency}}
             </mat-card-title>

@@ -23,7 +23,13 @@ function GetGroup(id){
     for(var i = 0; i < gDB.length; i++){
         if(gDB[i].id == id) return gDB[i];
     }
-    return -1;
+    return {};
+}
+
+function GetJsonGroup(id){
+    return {
+        "group": JSON.parse(JSON.stringify(GetGroup(id)))
+    }
 }
 
 function GetProduct(group, productID){
@@ -120,7 +126,7 @@ module.exports.db = gDB;
 module.exports.debug = Debug;
 
 module.exports.CreateGroup = CreateGroup;
-module.exports.GetGroup = GetGroup;
+module.exports.GetGroup = GetJsonGroup;
 module.exports.RemoveUserFromGroup = RemoveUserFromGroup;
 module.exports.AddUserToGroup = AddUserToGroup;
 module.exports.AddProductsToGroup = AddProductsToGroup;

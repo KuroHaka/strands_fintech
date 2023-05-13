@@ -1,0 +1,34 @@
+.products {
+    flex: 0 1 auto;
+    margin-right: 20px;
+}
+
+.users {
+    flex: 0 1 auto;
+}
+
+.groups {
+    flex: 0 1 auto;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.dropper {
+    height: 70px;
+
+    -webkit-box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+
+    border-radius: 5px;
+}
+
+.center {
+    display: flex;
+    flex-wrap: none;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: row;
+    margin-right: 50px;
+    margin-left: 50px;
+}

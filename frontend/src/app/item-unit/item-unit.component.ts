@@ -10,12 +10,12 @@ export class ItemUnitComponent {
     @Input() productName: string = ""
     @Input() price: string = ""
     @Input() currency: string = ""
-    @Input() users: string = ""
     @Input() units: string = ""
-    chips = ['pedro', 'javi', 'luffy', 'miau', 'guau', 'joan', 'roca']
+    @Input() id: string = ""
+    @Input() users: Set<string> = new Set();
 
     remove(user: string): void {
-        this.chips = this.chips.filter(item => item !== user);
+        this.users.delete(user);
     }
 }
 
@@ -23,6 +23,7 @@ export interface Product {
     productName: string;
     price: number;
     currency: string;
-    users: string[];
+    users: Set<string>;
     units: number;
+    id: number;
 }

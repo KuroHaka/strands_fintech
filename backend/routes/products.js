@@ -43,7 +43,7 @@ user_id: "id"
 group_id: "id"
 product_id: "id"
 */
-router.get("/user/add", (req, res) => {
+router.post("/user/add", (req, res) => {
     data = req.body.req;
 
     res.json(pepe.AddUserToProduct(data.user_id, data.product_id, data.group_id));
@@ -51,7 +51,7 @@ router.get("/user/add", (req, res) => {
     pepe.debug();
 });
 
-router.get("/user/remove", (req, res) => {
+router.post("/user/remove", (req, res) => {
     data = req.body.req;
 
     res.json(pepe.RemoveUserFromProduct(data.user_id, data.product_id, data.group_id));
