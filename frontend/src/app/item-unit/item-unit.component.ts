@@ -24,5 +24,4 @@ export interface Product {
     currency: string;
     users: Set<string>;
     units: number;
-    id: number;
 }

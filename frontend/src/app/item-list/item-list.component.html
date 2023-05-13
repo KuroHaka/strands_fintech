@@ -1,20 +1,25 @@
 <div class="center" cdkDropListGroup>
-    <div class="groups"></div>
+    <div class="insight">
+        <img src="/assets/map.png">
+    </div>
     <div class="products">
         <div *ngFor="let item of items">
-            <app-item-unit id={{item.id}} cdkDropList (cdkDropListDropped)="drop($event)"
-                productName={{item.productName}} price={{item.price}} currency={{item.currency}} units={{item.units}}
-                [users]="item.users">
+            <app-item-unit cdkDropList (cdkDropListDropped)="drop($event)" productName={{item.productName}}
+                price={{item.price}} currency={{item.currency}} units={{item.units}} [users]="item.users">
             </app-item-unit>
         </div>
     </div>
 
     <div class="users">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-            </mat-option>
-        </mat-autocomplete>
+        <mat-form-field class="searcher">
+            <mat-label>Accounts</mat-label>
+            <input type="text" matInput [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
         <mat-chip-listbox class="mat-mdc-chip-set-stacked" cdkDropList id="list2" cdkDropListOrientation="vertical">
             <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
                 {{user.name}}: {{user.contribution}} {{items[0].currency}}

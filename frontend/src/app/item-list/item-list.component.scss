@@ -4,24 +4,40 @@
 }
 
 .users {
-    margin-left: 10px;
-    margin-top: 10px;
-    flex: 0 1 auto;
+    position: fixed;
+    align-items: center;
+    top: 130px;
+    right: 150px;
 }
 
-.groups {
-    flex: 0 1 auto;
-    margin-left: 10px;
-    margin-top: 20px;
+
+.insight {
+    position: fixed;
+    top: 150px;
+    left: 150px;
+
+    img {
+        border-radius: 50%;
+        height: 270px;
+        width: 270px;
+        -webkit-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
+    }
 }
 
 .dropper {
     height: 70px;
-    -webkit-box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
-    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.3);
 
     border-radius: 5px;
+}
+
+.searcher {
+    height: 70px;
+    width: 300px;
 }
 
 .center {
@@ -34,12 +50,12 @@
     margin-left: 50px;
 }
 
-.mat-mdc-chip-set-stacked {
-     width: 400px;
-}
 
-mat-chip{
-    width: 430px;
+
+mat-chip {
+    width: 100%;
+    text-align: center;
     padding: 10px;
-    font-size: x-large;
+    padding-left: 20px;
+    font-size: large;
 }
