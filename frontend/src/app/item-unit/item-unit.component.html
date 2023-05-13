@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
-        <mat-icon *ngIf="chips.length!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
-        <mat-icon *ngIf="chips.length==0" mat-card-avatar style="color: red;">cancel</mat-icon>
+        <mat-icon class="check" *ngIf="chips.length!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
+        <mat-icon class="check" *ngIf="chips.length==0" mat-card-avatar style="color: red;">cancel</mat-icon>
         <mat-card-title>{{productName}}</mat-card-title>
         <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
         <mat-card-content>

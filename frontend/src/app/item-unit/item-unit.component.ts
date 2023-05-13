@@ -12,7 +12,7 @@ export class ItemUnitComponent {
     @Input() currency: string = ""
     @Input() users: string = ""
     @Input() units: string = ""
-    chips = ['pedro', 'javi', 'luffy']
+    chips = ['pedro', 'javi', 'luffy', 'miau', 'guau', 'joan', 'roca']
 
     remove(user: string): void {
         this.chips = this.chips.filter(item => item !== user);

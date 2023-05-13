@@ -1,4 +1,6 @@
 mat-card{
+    min-width: 800px;
+
     margin: 3px;
     padding: 3px;
     display: flex;
@@ -14,8 +16,29 @@ mat-card-footer{
     margin-left: 50px;
 }
 mat-card-content{
+    margin-top: -5px;
     width: 350px;
 }
 mat-chip-row{
     margin-left: 4px;
+    margin-top: 4px;
+}
+
+mat-card-header {
+    padding: 15px;
+    display: flex;
+}
+
+mat-card-title {
+    margin-top: 5px;
+    width: 100px;
+}
+
+mat-card-subtitle {
+    margin-top: 5px;
+    width: 100px;
+}
+
+mat-icon.check {
+    margin-top: 17px;
 }
