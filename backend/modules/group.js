@@ -1,4 +1,32 @@
-var gDB = [];
+
+
+// var gDB = [];
+var gDB = [
+    {
+      display_name: 'Hola',
+      users: [ 'userPFM11', 'userPFM12' ],
+      products: [
+        {
+          product_name: 'Coca-Cola',
+          price: '1.5',
+          users: [],
+          units: 3,
+          id: 0
+        },
+        { product_name: 'Fanta', price: '2', users: [], units: 3, id: 1 },
+        {
+          product_name: 'KitKat',
+          price: '4.5',
+          users: [],
+          units: 3,
+          id: 2
+        }
+      ],
+      id: 0,
+      _nextProductID: 3
+    }
+  ];
+
 var nextID = 0;
 
 
