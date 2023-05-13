@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="groups">
+    <div class="users">
         <mat-chip-listbox class="mat-mdc-chip-set-stacked"  cdkDropList id="list2" cdkDropListOrientation="vertical">
             <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
                 {{user.name}}: {{user.contribution}} {{items[0].currency}}
