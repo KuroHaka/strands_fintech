@@ -5,8 +5,11 @@ const bodyParser = require('body-parser');
 
 const util = require('util')
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  limit: '20mb'
+}));
 app.use(cors())
+
 
 app.use('/group', require('./routes/groups.js'));
 app.use('/product', require('./routes/products.js'));
