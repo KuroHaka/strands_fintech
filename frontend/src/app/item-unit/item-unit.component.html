@@ -1,22 +1,30 @@
 <mat-card>
     <mat-card-header>
+        <mat-icon *ngIf="chips.length!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
+        <mat-icon *ngIf="chips.length==0" mat-card-avatar style="color: red;">cancel</mat-icon>
         <mat-card-title>{{productName}}</mat-card-title>
-        <mat-card-title>{{price}}{{currency}}</mat-card-title>
         <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
+        <mat-card-content>
+            <mat-chip-grid>
+                <mat-chip-row *ngFor="let chip of chips" (removed)="remove(chip)">
+                    {{ chip }}
+                    <button matChipRemove [attr.aria-label]="'remove ' + chip">
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                </mat-chip-row>
+            </mat-chip-grid>
+        </mat-card-content>
+        <mat-card-footer>
+            <mat-card-subtitle>quantity</mat-card-subtitle>
+            <mat-card-title>
+                {{units}}
+            </mat-card-title>
+        </mat-card-footer>
+        <mat-card-footer>
+            <mat-card-subtitle>price</mat-card-subtitle>
+            <mat-card-title>
+                {{price}}{{currency}}
+            </mat-card-title>
+        </mat-card-footer>
     </mat-card-header>
 </mat-card>
-
-
-<!-- <div class="item">
-    <div class="horizontal">
-        <div class="name">{{productName}}</div>
-        <div class="price">{{price}}{{currency}}</div>
-
-        <div class="units">{{units}}</div>
-        <div class="users">
-            <ng-template ngFor user [ngForOf]="users">
-                <li>user</li>
-            </ng-template>
-        </div>
-    </div>
-</div> -->
