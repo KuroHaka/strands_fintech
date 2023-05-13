@@ -5,14 +5,12 @@
         <mat-card-title>{{productName}}</mat-card-title>
         <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
         <mat-card-content>
-            <div class="chip-rows">
-                <mat-chip-row *ngFor="let chip of chips" (removed)="remove(chip)">
-                    {{ chip }}
-                    <button matChipRemove [attr.aria-label]="'remove ' + chip">
-                        <mat-icon>cancel</mat-icon>
-                      </button>
-                </mat-chip-row>
-            </div>
+            <mat-chip-row *ngFor="let chip of chips" (removed)="remove(chip)">
+                {{ chip }}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip-row>
         </mat-card-content>
         <mat-card-footer>
             <mat-card-subtitle>quantity</mat-card-subtitle>
