@@ -1,6 +1,109 @@
 
 
 var gDB = [];
+/*
+var gDB = [
+  {
+    display_name: 'Test',
+    users: [ 'Minerva McGonagall' ],
+    products: [
+      {
+        product_name: 'Besf Carpaccio',
+        price: 1200,
+        users: [],
+        units: 5,
+        id: 0
+      },
+      {
+        product_name: 'Golden Sirt 3',
+        price: 4500,
+        users: [],
+        units: 2,
+        id: 1
+      },
+      {
+        product_name: 'OPEN FoOD',
+        price: 1125,
+        users: [],
+        units: 1,
+        id: 2
+      },
+      {
+        product_name: 'Lokun',
+        price: 3905,
+        users: [],
+        units: 111,
+        id: 3
+      },
+      {
+        product_name: 'Onion Flower',
+        price: 320,
+        users: [],
+        units: 4,
+        id: 4
+      },
+      {
+        product_name: 'French Fries',
+        price: 180,
+        users: [],
+        units: 4,
+        id: 5
+      },
+      {
+        product_name: 'Golden Baklava',
+        price: 5850,
+        users: [],
+        units: 15,
+        id: 6
+      },
+      {
+        product_name: 'Heineken',
+        price: 55,
+        users: [],
+        units: 1,
+        id: 7
+      },
+      {
+        product_name: 'Negroni',
+        price: 75,
+        users: [],
+        units: 1,
+        id: 8
+      },
+      {
+        product_name: 'Petrus 2009',
+        price: 200000,
+        users: [],
+        units: 2,
+        id: 9
+      },
+      {
+        product_name: 'Chteau Margaux',
+        price: 15500,
+        users: [],
+        units: 1,
+        id: 10
+      },
+      {
+        product_name: 'Sti1 Water 800',
+        price: 405,
+        users: [],
+        units: 9,
+        id: 11
+      },
+      {
+        product_name: 'Virgin Mojito',
+        price: 180,
+        users: [],
+        units: 4,
+        id: 12
+      }
+    ],
+    id: 0,
+    _nextProductID: 13
+  }
+]
+*/
 
 var nextID = 0;
 
