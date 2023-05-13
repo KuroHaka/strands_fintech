@@ -1,4 +1,12 @@
 mat-card{
     margin: 3px;
     padding: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+mat-card-footer{
+    margin-left: 50px;
+}
+mat-chip-grid{
+    width: 350px;
 }

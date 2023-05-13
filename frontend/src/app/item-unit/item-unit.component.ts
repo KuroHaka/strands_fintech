@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
     selector: 'app-item-unit',
@@ -11,6 +12,11 @@ export class ItemUnitComponent {
     @Input() currency: string = ""
     @Input() users: string = ""
     @Input() units: string = ""
+    chips = ['pedro', 'javi', 'luffy']
+
+    remove(user: string): void {
+        this.chips = this.chips.filter(item => item !== user);
+    }
 }
 
 export interface Product {
