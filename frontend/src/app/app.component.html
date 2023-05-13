@@ -1,3 +1,5 @@
-<ng-template ngFor let-item [ngForOf]="items">
-	<li>let-item</li>
-</ng-template>
+<div *ngFor="let item of items">
+    <app-item-unit productName={{item.productName}} price={{item.price}} currency={{item.currency}}
+        users={{item.users}} units={{item.units}}>
+    </app-item-unit>
+</div>

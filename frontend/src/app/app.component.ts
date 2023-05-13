@@ -12,7 +12,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.items = [
-            { productName: "Cocacola", price: 2, currency: "€", users: [], units: 0 }
+            { productName: "Cocacola", price: 2, currency: "€", users: [], units: 2 },
+            { productName: "Fanta", price: 2, currency: "€", users: [], units: 3 },
+            { productName: "Bistec", price: 7, currency: "€", users: [], units: 1 },
+            { productName: "Nissin", price: 2, currency: "€", users: [], units: 1 }
         ]
     }
 }

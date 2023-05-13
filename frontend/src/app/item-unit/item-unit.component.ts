@@ -7,16 +7,16 @@ import { Component, Input } from '@angular/core';
 })
 export class ItemUnitComponent {
     @Input() productName: string = ""
-    @Input() price: number = 0
+    @Input() price: string = ""
     @Input() currency: string = ""
-    @Input() users: string[] = []
-    @Input() units: number = 0
+    @Input() users: string = ""
+    @Input() units: string = ""
 }
 
 export interface Product {
     productName: string;
     price: number;
     currency: string;
-    users: [];
+    users: string[];
     units: number;
 }
