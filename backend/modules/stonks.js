@@ -6,8 +6,7 @@ const headers = {
     "x-api-key": 'LavC2RpKCvN38NljAC7H6UJzdtFwUNZ1lP0dUGej',
 };
 
-async function GetUser(userID){
-
+async function GetUser(userID, callback){
     https.get({
         hostname: "int.strandscloud.com",
         path: "/fs-api/users/" + userID,
@@ -19,9 +18,27 @@ async function GetUser(userID){
         });
     
         response.on('end', function () {
-            console.log(result);
+            callback(result);
         });
     });
 };
 
+async function GetTransactions(userID, callback){
+    https.get({
+        hostname: "int.strandscloud.com",
+        path: "/fs-api/transactions/",
+        headers: headers,
+      }, (response) => {
+        var result = ''
+        response.on('data', function (chunk) {
+            result += chunk;
+        });
+    
+        response.on('end', function () {
+            callback(JSON.parse(result));
+        });
+    });
+}
+
 module.exports.GetUser = GetUser;
+module.exports.GetTransactions = GetTransactions;
