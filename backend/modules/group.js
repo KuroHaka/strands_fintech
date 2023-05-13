@@ -1,130 +1,129 @@
 var gDB = [];
 var nextID = 0;
 
-// Utils
-function removeObjectWithId(arr, id) {
-  const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
 
-  if (objWithIdIndex > -1) {
-    arr.splice(objWithIdIndex, 1);
-  }
-
-  return arr;
-}
-
+const util = require('util')
 /*
 group: {
     display_name: string,
-    users: [{
-        user: id,
-        contribution: float
-    }],
-    amount: float,
+    users: [id],
+    products: [products]
     id: int
 }
+
+product: {
+    product_name: string,
+    price: number,
+    users: [id],
+    units: number,
+    id: id
+}
 */
-function getGroup(id){
+function GetGroup(id){
     for(var i = 0; i < gDB.length; i++){
         if(gDB[i].id == id) return gDB[i];
     }
     return -1;
 }
 
+function GetProduct(group, productID){
+    for(var i = 0; i < group.products.length; i++){
+        if(group.products[i].id == productID) return group.products[i];
+    }
+}
+
 // Aconsegueix info principal del grup i info del userID
 function CreateGroup(info, userID){
     gDB.push({
         "display_name": info.display_name,
-        "users": [{
-            "id": userID,
-            "contribution": 0,
-        }],
-        "amount": info.amount,
-        "id": nextID
+        "users": [userID],
+        "products": [],
+        "id": nextID,
+        "_nextProductID": 0
     });
     nextID += 1;
 
-    return nextID - 1;
+    return {
+        "group_id": nextID - 1
+    };
 }
-
 // Afegeix user a un grup amb una contribució principal
-function addUserToGroup(userID, group, initialContribution){
-    group.users.push({
-        "userID": userID,
-        "contribution": initialContribution,
-    });
-}
+function AddUserToGroup(userID, groupID){
+    var group = GetGroup(groupID);
+    if(!group) return {
+        "error": 1,
+    };
 
-function getGroupUser(userID, group){
-    if(!group.users) return -1;
-    for(var i = 0; i < group.users.length; i++){
-        if(group.users[i].id == userID){
-            return groups.users[i];
-        }
-    }
-    return -1;
-}
-
-// Fixa la contribució d'un usuari al grup
-function SetUserGroupContribution(userID, groupID, contribution){
-    var group = getGroup(groupID);
-
-    if(getGroupUser(userID, group) == -1){
-        console.log(group)
-        addUserToGroup(userID, group, contribution);
-    } else {
-        getGroupUser(userID, group).contribution = contribution;
-    }
+    if(!group.users.includes(userID)) group.users.push(userID);
+    return {};
 }
 
 function RemoveUserFromGroup(userID, groupID){
-    var group = getGroup(groupID);
+    var group = GetGroup(groupID);
 
-    if(getGroupUser(userID, group) == -1) return 0;
-
-    for(var i = 0; i < group.users.length; i++){
-        if(groups.users[i].id == userID){
-            removeObjectWithId(group.users, i);
-        }
+    if(group.users.includes(userID)){
+        const index = group.users.indexOf(userID);
+        group.users.splice(index, 1);
     }
+
+    return {};
 }
 
-function GetUserGroupContribution(userID, groupID){
-    var group = getGroup(groupID);
+/*
+products es un array de productes com al slack
+*/
+function AddProductsToGroup(products, groupID){
+    var group = GetGroup(groupID);
 
-    var user = getGroupUser(userID, group);
-    if(user == -1){
-        return 0;
+    for(var i = 0; i < products.length; i++){
+        group.products.push({
+            "product_name": products[i].product_name,
+            "price": products[i].price,
+            "users": [],
+            "units": products[i].units,
+            "id": group._nextProductID,
+        });
+        group._nextProductID++;
     }
-    return user.contribution; 
+
+    return {};
 }
 
-function GetRemaining(groupID){
-    var group = getGroup(groupID);
+function AddUserToProduct(userID, productID, groupID){
+    var group = GetGroup(groupID);
 
-    var r = group.amount;
-    for(var i = 0; i < group.users.length; i++){
-        r -= group.users[i].contribution;
-    }
+    var product = GetProduct(group, productID);
+    product.users.push(userID);
 
-    return r;
+    return {}
 }
 
-function GetGroupContributions(groupID){
-    var r = [];
-    var group = getGroup(groupID);
+function RemoveUserFromProduct(userID, productID, groupID){
+    var group = GetGroup(groupID);
 
-    for(var i = 0; i < group.users.length; i++){
-        r.push(group.users[i]);
+    var product = GetProduct(group, productID);
+
+    if(product.users.includes(userID)){
+        const index = product.users.indexOf(userID);
+        product.users.splice(index, 1);
     }
 
-    return r;
+    return {};
+}
+
+function Debug(){
+    console.log("--------------")
+    console.log(util.inspect(gDB, false, null, true))
 }
 
 module.exports.db = gDB;
+module.exports.debug = Debug;
 
 module.exports.CreateGroup = CreateGroup;
-module.exports.SetUserGroupContribution = SetUserGroupContribution;
+module.exports.GetGroup = GetGroup;
 module.exports.RemoveUserFromGroup = RemoveUserFromGroup;
-module.exports.GetUserGroupContribution = GetUserGroupContribution;
-module.exports.GetGroupContributions = GetGroupContributions;
-module.exports.GetRemaining = GetRemaining;
+module.exports.AddUserToGroup = AddUserToGroup;
+module.exports.AddProductsToGroup = AddProductsToGroup;
+
+module.exports.GetProduct = GetProduct;
+module.exports.AddUserToProduct = AddUserToProduct;
