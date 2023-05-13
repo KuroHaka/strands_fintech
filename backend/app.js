@@ -13,6 +13,7 @@ app.use(cors())
 
 app.use('/group', require('./routes/groups.js'));
 app.use('/product', require('./routes/products.js'));
+app.use('/users', require('./routes/users.js'));
 
 app.listen(8000, () => {
   console.log("Started server");

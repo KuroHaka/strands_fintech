@@ -41,6 +41,7 @@ export class ItemListComponent {
 
         for(var i = 0; i < data.group.users.length; i++){
           var user = data.group.users[i];
+          console.log("JJDSLADKAS")
           console.log(user);
           this.users.push({
             name: user,
@@ -63,6 +64,16 @@ export class ItemListComponent {
         }
 
         console.log(data);
+      })
+
+      this.backend.post("", {
+        "req": {}
+      }, new HttpHeaders({
+        'Content-Type':  'application/json'
+      })).subscribe((data: any) => {
+
+        this.users = data.users;
+        console.log(this.users);
       })
 
       /*
