@@ -40,7 +40,6 @@ export class ItemListComponent {
 
       this.users = []
       this.options = ["pepe", "papa", "product", "Minerva McGonagall"]
-
       for (var i = 0; i < data.group.users.length; i++) {
         var user = data.group.users[i];
         this.users.push({
@@ -81,7 +80,6 @@ export class ItemListComponent {
         { productName: "Nisdsadassin", price: 2, currency: "€", users: [], units: 1 }
     ]
     */
-
 
   }
 
