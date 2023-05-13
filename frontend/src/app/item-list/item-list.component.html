@@ -1,18 +1,19 @@
 <div class="center" cdkDropListGroup>
-<div class="products">
-    <div *ngFor="let item of items">
-        <app-item-unit 
-        productName={{item.productName}} price={{item.price}} currency={{item.currency}}  units={{item.units}} [users]="item.users">
-        </app-item-unit>
-        <div class="dropper" id={{item.id}} cdkDropList (cdkDropListDropped)="drop($event)"></div>
+    <div class="groups"></div>
+    <div class="products">
+        <div *ngFor="let item of items">
+            <app-item-unit id={{item.id}} cdkDropList (cdkDropListDropped)="drop($event)"
+                productName={{item.productName}} price={{item.price}} currency={{item.currency}} units={{item.units}}
+                [users]="item.users">
+            </app-item-unit>
+        </div>
     </div>
-</div>
 
-<div class="groups">
-    <mat-chip-set cdkDropList id="list2" cdkDropListOrientation="vertical">
-        <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
-            {{user.name}}
-        </mat-chip>
-    </mat-chip-set>
-</div>
+    <div class="groups">
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked"  cdkDropList id="list2" cdkDropListOrientation="vertical">
+            <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
+                {{user.name}}: {{user.contribution}} {{items[0].currency}}
+            </mat-chip>
+        </mat-chip-listbox>
+    </div>
 </div>

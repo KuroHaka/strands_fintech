@@ -3,15 +3,13 @@
         <mat-icon class="check" *ngIf="users.size!=0" mat-card-avatar style="color: green;">check_circle</mat-icon>
         <mat-icon class="check" *ngIf="users.size==0" mat-card-avatar style="color: red;">cancel</mat-icon>
         <mat-card-title>{{productName}}</mat-card-title>
-        <mat-card-subtitle>Contribuitors:</mat-card-subtitle>
-        <mat-card-content>
-            <mat-chip-row *ngFor="let user of users" (removed)="remove(user)">
+        <mat-card-subtitle class="chips">
+            <mat-chip-row *ngFor="let user of users" (removed)="remove(user)" style="background-color: lightgreen;">
                 {{ user }}
                 <button matChipRemove>
                     <mat-icon>cancel</mat-icon>
                 </button>
-            </mat-chip-row>
-        </mat-card-content>
+            </mat-chip-row></mat-card-subtitle>
         <mat-card-footer>
             <mat-card-subtitle>Quantity</mat-card-subtitle>
             <mat-card-title>
