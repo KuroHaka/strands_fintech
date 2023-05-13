@@ -15,6 +15,7 @@ export class ItemListComponent {
   {}
   users: User[] = [];
   items: Product[] = [];
+  options: string[] = [];
 
   ngOnInit(): void {
       
@@ -35,7 +36,8 @@ export class ItemListComponent {
         'Content-Type':  'application/json'
       })).subscribe((data: any) => {
 
-        this.users = [];
+        this.users = []
+        this.options = []
 
         for(var i = 0; i < data.group.users.length; i++){
           var user = data.group.users[i];

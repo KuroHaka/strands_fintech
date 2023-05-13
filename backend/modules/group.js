@@ -1,7 +1,7 @@
 
 
-var gDB = [];
-/*
+// var gDB = [];
+
 var gDB = [
   {
     display_name: 'Test',
@@ -103,7 +103,6 @@ var gDB = [
     _nextProductID: 13
   }
 ]
-*/
 
 var nextID = 0;
 
