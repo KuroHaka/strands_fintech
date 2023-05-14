@@ -14,9 +14,12 @@
 }
 
 .upload {
-    display: block;
+    display: fixed;
+    position: absolute;
     text-align: center;
-    margin-top: 200px;
+    bottom: 100px;
+    left: 0;
+    right: 0;
 
     .button-container {
         width: 200px;
