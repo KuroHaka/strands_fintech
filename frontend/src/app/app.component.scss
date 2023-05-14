@@ -1,0 +1,49 @@
+.header {
+    width: 100%;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+
+    h1 {
+        font-size: 32px;
+        font-weight: 500;
+    }
+}
+
+* {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+}
+
+.upload {
+    display: fixed;
+    position: absolute;
+    text-align: center;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+
+    .button-container {
+        width: 120px;
+        height: 120px;
+
+        .mat-icon {
+            width: 60px !important;
+            height: 60px !important;
+            line-height: 60px !important;
+        }
+
+        .material-icons {
+            font-size: 60px !important;
+        }
+    }
+}

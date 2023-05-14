@@ -1,0 +1,37 @@
+<div class="center" cdkDropListGroup>
+    <div class="insight">
+        <img src="/assets/map.png">
+        <h1>Nurset Galleria Restaurant LTD</h1>
+        <h2>{{cashout}}</h2>
+    </div>
+    <div class="products">
+        <div *ngFor="let item of items">
+            <app-item-unit cdkDropList (cdkDropListDropped)="drop($event)" productName={{item.productName}}
+                price={{item.price}} currency={{item.currency}} id={{item.id}} units={{item.units}} [users]="item.users" (removeEvent)="update_all_prices()">
+            </app-item-unit>
+        </div>
+        <button style="width: 100%; height: 80px; margin-top: 20px" mat-raised-button color="primary"
+        [disabled]="allChecked" (click)="upload()">Upload</button>
+        <div *ngIf="goodMessage">
+            <p style="width: 100%; text-align: center; margin-top: 20px;">Payment made correctly</p>
+        </div><div style="margin-bottom: 100px;"></div>
+    </div>
+
+    <div class="users">
+        <mat-form-field class="searcher">
+            <mat-label>Accounts</mat-label>
+            <input type="text" matInput [matAutocomplete]="auto" [(ngModel)]="currentFilter">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='setInvite($event.option.id)'>
+                <mat-option id='{"option": "{{option.name}}", "id": "{{option.id}}" }' *ngFor="let option of options">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked" cdkDropList id="list2" cdkDropListOrientation="vertical">
+            <mat-chip class="chip" cdkDrag *ngFor="let user of users | keyvalue" id={{users[user.key].id}}>
+                <div class="" *cdkDragPlaceholder></div>
+                {{users[user.key].name}} {{users[user.key].secondSurname}}: {{users[user.key].contribution}} $
+            </mat-chip>
+        </mat-chip-listbox>
+    </div>
+</div>

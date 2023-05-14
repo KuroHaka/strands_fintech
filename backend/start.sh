@@ -1,2 +1,3 @@
 #!/bin/bash
-npm run start
+cd "$(dirname "$0")"
+npm run test

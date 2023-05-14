@@ -1,0 +1,99 @@
+.container {
+    display: block;
+
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+.list {
+    max-height: 500px;
+    overflow-y: visible;
+    overflow-x: hidden;
+
+    margin-left: 200px;
+    margin-right: 200px;
+
+    left: 0;
+    right: 0;
+}
+
+
+mat-card-footer {
+    margin-left: 50px;
+}
+
+mat-card-content {
+    margin-top: -5px;
+    width: 350px;
+}
+
+mat-chip-row {
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+mat-card-header {
+    padding: 15px;
+    display: flex;
+}
+
+mat-card-title {
+    margin-top: 5px;
+}
+
+mat-card-subtitle {
+    margin-top: 5px;
+    width: 80px;
+}
+
+mat-icon.check {
+    margin-top: 17px;
+}
+
+mat-button-toggle {
+    display: table;
+    vertical-align: middle;
+    min-width: 100%;
+    text-align: center;
+}
+
+mat-button-toggle-group {
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 200px;
+    border: none;
+}
+
+.transaction {
+    margin: 15px;
+    -webkit-box-shadow: 0px 26px 30px -28px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 26px 30px -28px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 26px 30px -28px rgba(0, 0, 0, 0.3);
+}
+
+.mat-button-toggle-checked {
+    background-color: lightgreen;
+}
+
+.text {
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 1250px;
+    height: 60x;
+}
+
+.preu {
+    left: 20px;
+    display: table-cell;
+}
+
+.chips {
+    width: 400px;
+}
