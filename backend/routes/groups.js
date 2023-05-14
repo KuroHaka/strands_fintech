@@ -34,10 +34,12 @@ router.post("/get", (req, res) => {
 group_id: id
 user_id: id
 */
-router.post("/users/add", (req, res) => {
+router.post("/users/add", async (req, res) => {
     data = req.body.req;
+    console.log("AAAA:")
+    console.log(data);
 
-    res.json(pepe.AddUserToGroup(data.user_id, data.group_id));
+    res.json(await pepe.AddUserToGroup(data.user_id, data.group_id));
 
     pepe.debug();
 });

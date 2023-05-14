@@ -5,7 +5,7 @@
     <div class="products">
         <div *ngFor="let item of items">
             <app-item-unit cdkDropList (cdkDropListDropped)="drop($event)" productName={{item.productName}}
-                price={{item.price}} currency={{item.currency}} units={{item.units}} [users]="item.users">
+                price={{item.price}} currency={{item.currency}} id={{item.id}} units={{item.units}} [users]="item.users">
             </app-item-unit>
         </div>
     </div>
@@ -13,16 +13,16 @@
     <div class="users">
         <mat-form-field class="searcher">
             <mat-label>Accounts</mat-label>
-            <input type="text" matInput [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
+            <input type="text" matInput [matAutocomplete]="auto" [(ngModel)]="currentFilter">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='setInvite($event.option.id)'>
+                <mat-option id='{"option": "{{option.name}}", "id": "{{option.id}}" }' *ngFor="let option of options">
+                    {{option.name}}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
         <mat-chip-listbox class="mat-mdc-chip-set-stacked" cdkDropList id="list2" cdkDropListOrientation="vertical">
-            <mat-chip cdkDrag *ngFor="let user of users" id={{user.name}}>
-                {{user.name}}: {{user.contribution}} {{items[0].currency}}
+            <mat-chip cdkDrag *ngFor="let user of users" id={{user.id}}>
+                {{user.name}} {{user.secondSurname}}: {{user.contribution}} $
             </mat-chip>
         </mat-chip-listbox>
     </div>

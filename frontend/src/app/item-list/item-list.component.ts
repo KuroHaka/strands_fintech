@@ -7,6 +7,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
+
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
@@ -17,11 +18,20 @@ export class ItemListComponent {
   users: User[] = [];
   items: Product[] = [];
   selected: string[] = [];
+  currentFilter: string = "";
   filteredOptions: Observable<string[]> | undefined;
-  options: string[] = ['Mary', 'Shelley', 'Igor'];
+  options: any[] = [];
   myControl = new FormControl<string>('');
 
   ngOnInit() {
+    this.RefreshView();
+  }
+
+
+  RefreshView(){
+
+    this.users = [];
+    this.items = [];
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -38,49 +48,86 @@ export class ItemListComponent {
       'Content-Type': 'application/json'
     })).subscribe((data: any) => {
 
-      this.users = []
-      this.options = ["pepe", "papa", "product", "Minerva McGonagall"]
+      
+      if(Object.keys(data.group).length == 0) return;
+
       for (var i = 0; i < data.group.users.length; i++) {
         var user = data.group.users[i];
+        
         this.users.push({
-          name: user,
+          name: user.name,
+          firstSurname: user.firstSurname,
+          secondSurname: user.secondSurname,
+          id: user.id,
           contribution: 0,
         });
       }
 
-      this.items = [];
 
       for (var i = 0; i < data.group.products.length; i++) {
         var product = data.group.products[i];
+        console.log(product.currency);
         this.items.push({
           productName: product.product_name,
           price: product.price,
           currency: product.currency,
           users: new Set(product.users),
           units: product.units,
+          id: i,
         });
       }
 
       console.log(data);
     })
-    /*
-    this.items = [
-        { productName: "Cocacola", price: 2, currency: "€", users: [pableo], units: 2 },
-        { productName: "Fanta", price: 2, currency: "€", users: [], units: 3 },
-        { productName: "Bistec", price: 7, currency: "€", users: [], units: 1 },
-        { productName: "Nissin", price: 2, currency: "€", users: [], units: 1 },
-  
-        { productName: "Cocadsacola", price: 2, currency: "€", users: [], units: 2 },
-        { productName: "Fantdasa", price: 2, currency: "€", users: [], units: 3 },
-        { productName: "Bistdasdsaec", price: 7, currency: "€", users: [], units: 1 },
-        { productName: "Nisdsadassin", price: 2, currency: "€", users: [], units: 1 },
-        { productName: "Cocadsacola", price: 2, currency: "€", users: [], units: 2 },
-        { productName: "Fantdasa", price: 2, currency: "€", users: [], units: 3 },
-        { productName: "Bistdasdsaec", price: 7, currency: "€", users: [], units: 1 },
-        { productName: "Nisdsadassin", price: 2, currency: "€", users: [], units: 1 }
-    ]
-    */
 
+
+    this.backend.post("users/get_all", {
+    }, new HttpHeaders({
+      'Content-Type': 'application/json'
+    })).subscribe((data: any) => {
+      console.log("Allusers")
+      console.log(data);
+
+      this.options = [];
+      for(var i = 0; i < data.users.length; i++){
+        this.options.push({
+          "name": data.users[i].name + " " + data.users[i].firstSurname + " " + data.users[i].secondSurname,
+          "id": data.users[i].id
+        });
+      }
+
+      console.log(this.options);
+    });
+  }
+
+  setInvite(event: string){
+    console.log("HOLA")
+    console.log(event);
+    var data = JSON.parse(event);
+    console.log("dataoption:",data.id.toString());
+
+    this.backend.post("group/users/add", {
+      "req": {
+        "group_id": "0",
+        "user_id": data.id
+      }
+    }, new HttpHeaders({
+      'Content-Type': 'application/json'
+    })).subscribe((data: any) => {
+      this.users = [];
+
+      for (var i = 0; i < data.group.users.length; i++) {
+        var user = data.group.users[i];
+        
+        this.users.push({
+          name: user.name,
+          firstSurname: user.firstSurname,
+          secondSurname: user.secondSurname,
+          id: user.id,
+          contribution: 0,
+        });
+      }
+    });
   }
 
   private _filter(name: string): string[] {
@@ -89,9 +136,11 @@ export class ItemListComponent {
   }
 
   drop(event: CdkDragDrop<User[]>) {
-    var userName = event.item.element.nativeElement.id
+    var userID = event.item.element.nativeElement.id
+    console.log(userID)
     var productID = event.container.element.nativeElement.id;
+    console.log(productID)
 
-    this.items[parseInt(productID)].users.add(userName);
+    this.items[parseInt(productID)].users.add(userID);
   }
 }

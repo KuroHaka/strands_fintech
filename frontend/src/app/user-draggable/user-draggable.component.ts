@@ -12,5 +12,8 @@ export class UserDraggableComponent {
 
 export interface User {
   name: string;
+  firstSurname: string;
+  secondSurname: string;
   contribution: number;
+  id: string;
 }
