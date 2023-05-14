@@ -49,7 +49,6 @@ export class ItemListComponent {
       }
 
       this.items = [];
-
       for (var i = 0; i < data.group.products.length; i++) {
         var product = data.group.products[i];
         this.items.push({

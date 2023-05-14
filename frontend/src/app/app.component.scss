@@ -12,3 +12,24 @@
         font-weight: 500;
     }
 }
+
+.upload {
+    display: block;
+    text-align: center;
+    margin-top: 200px;
+
+    .button-container {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 50px;
+        .mat-icon {
+            width: 90px !important;
+            height: 90px !important;
+            line-height: 90px !important;
+         }
+         .material-icons {
+            font-size: 90px !important;
+         }
+    }
+
+}
