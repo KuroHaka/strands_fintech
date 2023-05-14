@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -23,5 +24,11 @@ export class TransactionsComponent {
       this.transactions = data.transactions;
       console.log(data);
     })
+  }
+
+  onValChange(change: any) {
+    if(change.value < 0){
+      console.log(change.value)
+    }
   }
 }

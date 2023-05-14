@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemUnitComponent } from './item-unit/item-unit.component';
 import { UserDraggableComponent } from './user-draggable/user-draggable.component';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { HttpClientModule } from '@angular/common/http';
 import { UserListComponent } from './user-list/user-list.component';
@@ -20,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
     ItemUnitComponent,
     UserListComponent,
     ItemListComponent,
-    TransactionsComponent
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,13 +40,20 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
     MatChipsModule,
     DragDropModule,
     MatInputModule,
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

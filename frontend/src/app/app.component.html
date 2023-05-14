@@ -8,11 +8,11 @@
         <div class="upload">
             <div>
                 <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
-                <button class="button-container" mat-fab color="primary" (click)="hiddenfileinput.click()">
+                <button class="button-container" mat-fab color="primary" (click)="hiddenfileinput.click()" [disabled]="sendDisable">
                     <mat-icon>folder</mat-icon>
                 </button>
             </div>
         </div>
     </div>
-    <app-item-list *ngIf="view2"></app-item-list>
+    <app-item-list *ngIf="view2" (setPriceEvent)="setPrice($event)"></app-item-list>
 </div>

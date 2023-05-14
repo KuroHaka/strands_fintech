@@ -79,6 +79,13 @@ router.post("/create_receipt", async (req, res) => {
     });
 });
 
+router.post("/pay", async (req, res) => {
+    data = req.body.req;
+    console.log(data);
+
+    res.json({});
+});
+
 /*
 stonks.GetTransactions("userPFM11", (result) => {
     res.json(result);
