@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemUnitComponent } from './item-unit/item-unit.component';
-import { Product } from './item-unit/item-unit.component';
-import { User } from './user-draggable/user-draggable.component';
-import { UserDraggableComponent } from './user-draggable/user-draggable.component';
-import { HttpClient } from '@angular/common/http';
 import { BackendService } from './backend.service';
 
 @Component({
@@ -11,14 +6,22 @@ import { BackendService } from './backend.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-    
-    title = 'frontend';
 
-    constructor(private backend : BackendService)
-    {}
+export class AppComponent implements OnInit {
+
+    title = 'frontend';
+    view2: boolean = false
+
+    constructor(private backend: BackendService) { }
 
     ngOnInit(): void {
-        
+
+    }
+    onFileSelect(event: Event) {
+        const target = event.target as HTMLInputElement;
+        if (target.files != null){
+            let image = target.files[0]
+            console.log(image.name)
+        }
     }
 }

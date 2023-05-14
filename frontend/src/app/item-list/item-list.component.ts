@@ -63,7 +63,6 @@ export class ItemListComponent {
         });
       }
 
-
       for (var i = 0; i < data.group.products.length; i++) {
         var product = data.group.products[i];
         console.log(product.currency);

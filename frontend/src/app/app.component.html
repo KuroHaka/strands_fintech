@@ -1,7 +1,16 @@
 <div>
     <!-- <app-user-list></app-user-list> -->
-    <div class ="header">
-    <h1>Dashboard</h1>
-</div>
-    <app-item-list></app-item-list>
+    <div class="header">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="upload" *ngIf="!view2">
+        <div>
+            <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+            <button class="button-container" mat-fab color="primary" (click)="hiddenfileinput.click()">
+                <mat-icon>folder</mat-icon>
+            </button>
+        </div>
+        <button style="width: 100px; height: 40px;" mat-raised-button color="primary">Upload</button>
+    </div>
+    <app-item-list *ngIf="view2"></app-item-list>
 </div>
