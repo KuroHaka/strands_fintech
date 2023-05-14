@@ -109,7 +109,7 @@ export class ItemListComponent {
 
             for (var i = 0; i < data.group.users.length; i++) {
                 var user = data.group.users[i];
-                this.users[user.id] = {
+                this.users[user.secondSurname] = {
                     name: user.name,
                     firstSurname: user.firstSurname,
                     secondSurname: user.secondSurname,
@@ -128,7 +128,9 @@ export class ItemListComponent {
     drop(event: CdkDragDrop<User[]>) {
         var userID = this.users[event.item.element.nativeElement.id].id
         var productID = parseInt(event.container.element.nativeElement.id);
-        this.items[productID].users.add(userID);
+
+        this.items[productID].users.add(
+            this.users[event.item.element.nativeElement.id].secondSurname);
         //update butget and prices
         this.update_all_prices()
     }
@@ -136,6 +138,7 @@ export class ItemListComponent {
 
     update_all_prices() {
         var f = 0;
+        console.log(this.users);
         for (let user in this.users) {
             this.users[user].contribution = 0
         }
@@ -169,7 +172,7 @@ export class ItemListComponent {
         var contributions = [];
         for (const key in this.users) {
             contributions.push({
-                "user_id": this.users[key].id,
+                "user_id": this.users[key].secondSurname,
                 "contribution": this.users[key].contribution
             });
         }

@@ -28,7 +28,8 @@
             </mat-autocomplete>
         </mat-form-field>
         <mat-chip-listbox class="mat-mdc-chip-set-stacked" cdkDropList id="list2" cdkDropListOrientation="vertical">
-            <mat-chip cdkDrag *ngFor="let user of users | keyvalue" id={{users[user.key].id}}>
+            <mat-chip class="chip" cdkDrag *ngFor="let user of users | keyvalue" id={{users[user.key].id}}>
+                <div class="" *cdkDragPlaceholder></div>
                 {{users[user.key].name}} {{users[user.key].secondSurname}}: {{users[user.key].contribution}} $
             </mat-chip>
         </mat-chip-listbox>
