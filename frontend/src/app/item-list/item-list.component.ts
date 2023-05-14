@@ -148,25 +148,24 @@ export class ItemListComponent {
                 var price_person = this.items[i].price / this.items[i].users.size
                 price_person = Math.round(price_person * 100 + Number.EPSILON) / 100
             }
-            else{
+            else {
                 var price_person = 0
                 f += 1;
             }
             for (var user of Array.from(this.items[i].users.values())) {
-                this.users[user].contribution += price_person
-                console.log(this.users[user].contribution)
+                this.users[user].contribution = Math.round((this.users[user].contribution + price_person) * 100 + Number.EPSILON) / 100
             }
         }
 
         console.log(f);
-        if(f == 0){
+        if (f == 0) {
             this.allChecked = false;
         } else {
             this.allChecked = true;
         }
     }
 
-    upload(){
+    upload() {
 
 
         var contributions = [];
@@ -185,7 +184,7 @@ export class ItemListComponent {
         }, new HttpHeaders({
             'Content-Type': 'application/json'
         })).subscribe((data: any) => {
-            
+
             this.goodMessage = true;
         });
 

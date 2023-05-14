@@ -1,13 +1,20 @@
 <div class="container">
-    <h1>Transaccions recents</h1>
-    <p>Selecciona una transacció per compartir</p>
+    <h1>Last transactions:</h1>
+    <p>Select transaction to share spend</p>
 
     <div class="list">
         <mat-button-toggle-group vertical (change)="onValChange($event)">
-            <div *ngFor="let item of transactions">
+            <div class="transaction" *ngFor="let item of transactions">
                 <mat-button-toggle value="{{item.amount.amount}}">
                     <div class="text">
-                        {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{item.amount.amount}} {{item.amount.currency}}
+                        <div class="text-item">
+                            <h1>
+                                <span style="color:gray;font-size: medium;">{{item.date.replace("T00:00Z", "")}}</span>
+                                {{item.name}}</h1>
+                        </div>
+                        <div class="text-item">
+                            <h2>{{item.amount.amount}} {{item.amount.currency}}</h2>
+                        </div>
                     </div>
                 </mat-button-toggle>
             </div>
