@@ -19,6 +19,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     UserDraggableComponent,
     ItemUnitComponent,
     UserListComponent,
-    ItemListComponent
+    ItemListComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,

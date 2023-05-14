@@ -3,14 +3,16 @@
     <div class="header">
         <h1>Dashboard</h1>
     </div>
-    <div class="upload" *ngIf="!view2">
-        <div>
-            <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
-            <button class="button-container" mat-fab color="primary" (click)="hiddenfileinput.click()">
-                <mat-icon>folder</mat-icon>
-            </button>
+    <div *ngIf="!view2">
+        <app-transactions></app-transactions>
+        <div class="upload">
+            <div>
+                <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+                <button class="button-container" mat-fab color="primary" (click)="hiddenfileinput.click()">
+                    <mat-icon>folder</mat-icon>
+                </button>
+            </div>
         </div>
-        <button style="width: 100px; height: 40px;" mat-raised-button color="primary">Upload</button>
     </div>
     <app-item-list *ngIf="view2"></app-item-list>
 </div>

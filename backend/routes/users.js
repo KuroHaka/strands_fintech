@@ -14,5 +14,13 @@ router.post("/get_all", async (req, res) => {
     pepe.debug();
 });
 
+router.post("/get_transactions", async (req, res) => {
+    data = req.body;
+
+    stonks.GetTransactions(data.login.username, (body) => {
+        res.json(body);
+    });
+});
+
 
 module.exports = router;
