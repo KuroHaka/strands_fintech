@@ -13,6 +13,9 @@ export class AppComponent implements OnInit {
 
     title = 'frontend';
     view2: boolean = false
+    sendDisable: boolean = false
+
+    balance: string = "Checkout: 0 USD"
 
     constructor(private backend: BackendService) { }
 
@@ -25,9 +28,14 @@ export class AppComponent implements OnInit {
             'Content-Type': 'application/json'
         })).subscribe((data: any) => {
 
-
+            
             if (Object.keys(data.group).length != 0) this.view2 = true;
         });
+    }
+
+    setPrice(res: number){
+        console.log("Miau", res)
+        this.balance = "Checkout: " + res + "$";
     }
 
     onFileSelect(event: Event) {

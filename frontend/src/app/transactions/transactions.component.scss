@@ -5,6 +5,10 @@
         text-align: center;
     }
 
+    p {
+        text-align: center;
+    }
+
     
 }
 .list {
@@ -60,6 +64,32 @@ mat-card-subtitle {
 
 mat-icon.check {
     margin-top: 17px;
+}
+
+mat-button-toggle {
+    display: table;
+    vertical-align: middle;
+    min-width: 100%;
+    text-align: center;
+}
+
+mat-button-toggle-group {
+    margin-left: 200px;
+    margin-right: 200px;
+    display: block;
+    border: none;
+}
+
+.text {
+    display: table-cell;
+    right: 20px;
+    margin-right: 200px;
+    text-align: right;
+}
+
+.preu {
+    left: 20px;
+    display: table-cell;
 }
 
 .chips{

@@ -1,25 +1,16 @@
 <div class="container">
     <h1>Transaccions recents</h1>
+    <p>Selecciona una transacció per compartir</p>
 
     <div class="list">
-        <div *ngFor="let item of transactions">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title>{{item.name}}</mat-card-title>
-                    <mat-card-footer>
-                        <mat-card-subtitle>Quantity</mat-card-subtitle>
-                        <mat-card-title>
-                            {{item.amount.amount}} {{item.amount.currency}}
-                        </mat-card-title>
-                    </mat-card-footer>
-                    <mat-card-footer>
-                        <mat-card-subtitle>Price</mat-card-subtitle>
-                        <mat-card-title>
-                            {{item.price}}
-                        </mat-card-title>
-                    </mat-card-footer>
-                </mat-card-header>
-            </mat-card>
-        </div>
+        <mat-button-toggle-group vertical (change)="onValChange($event)">
+            <div *ngFor="let item of transactions">
+                <mat-button-toggle value="{{item.amount.amount}}">
+                    <div class="text">
+                        {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{item.amount.amount}} {{item.amount.currency}}
+                    </div>
+                </mat-button-toggle>
+            </div>
+        </mat-button-toggle-group>
     </div>
 </div>

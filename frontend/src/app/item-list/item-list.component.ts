@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { Product } from '../item-unit/item-unit.component';
 import { User } from '../user-draggable/user-draggable.component';
@@ -6,7 +6,6 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
-
 
 @Component({
     selector: 'app-item-list',
@@ -22,6 +21,11 @@ export class ItemListComponent {
     filteredOptions: Observable<string[]> | undefined;
     options: any[] = [];
     myControl = new FormControl<string>('');
+    allChecked: boolean = true;
+    goodMessage: boolean = false;
+    cashout: string = "";
+
+    @Output() setPriceEvent = new EventEmitter<number>();
 
     ngOnInit() {
 
@@ -42,7 +46,7 @@ export class ItemListComponent {
         }, new HttpHeaders({
             'Content-Type': 'application/json'
         })).subscribe((data: any) => {
-
+            var total = 0;
 
             if (Object.keys(data.group).length == 0) return;
 
@@ -60,6 +64,7 @@ export class ItemListComponent {
 
             for (var i = 0; i < data.group.products.length; i++) {
                 var product = data.group.products[i];
+                total += product.price;
                 this.items.push({
                     productName: product.product_name,
                     price: product.price,
@@ -69,6 +74,8 @@ export class ItemListComponent {
                     id: i,
                 });
             }
+
+            this.cashout = "Cashout: " + total + "$";
 
         })
 
@@ -109,7 +116,6 @@ export class ItemListComponent {
                     id: user.id,
                     contribution: 0
                 }
-
             }
         });
     }
@@ -120,13 +126,65 @@ export class ItemListComponent {
     }
 
     drop(event: CdkDragDrop<User[]>) {
-        var userID = this.users[event.item.element.nativeElement.id].name
+        var userID = this.users[event.item.element.nativeElement.id].id
         var productID = parseInt(event.container.element.nativeElement.id);
         this.items[productID].users.add(userID);
-
         //update butget and prices
-        var price_person = this.items[productID].price / this.items[productID].users.size
-        var price_person = Math.round(price_person * 100 + Number.EPSILON) / 100
-        
+        this.update_all_prices()
+    }
+
+
+    update_all_prices() {
+        var f = 0;
+        for (let user in this.users) {
+            this.users[user].contribution = 0
+        }
+        for (var i in this.items) {
+
+            if (this.items[i].users.size != 0) {
+                var price_person = this.items[i].price / this.items[i].users.size
+                price_person = Math.round(price_person * 100 + Number.EPSILON) / 100
+            }
+            else{
+                var price_person = 0
+                f += 1;
+            }
+            for (var user of Array.from(this.items[i].users.values())) {
+                this.users[user].contribution += price_person
+                console.log(this.users[user].contribution)
+            }
+        }
+
+        console.log(f);
+        if(f == 0){
+            this.allChecked = false;
+        } else {
+            this.allChecked = true;
+        }
+    }
+
+    upload(){
+
+
+        var contributions = [];
+        for (const key in this.users) {
+            contributions.push({
+                "user_id": this.users[key].id,
+                "contribution": this.users[key].contribution
+            });
+        }
+
+        this.backend.post("group/pay", {
+            "req": {
+                "group_id": "0",
+                "total": contributions
+            }
+        }, new HttpHeaders({
+            'Content-Type': 'application/json'
+        })).subscribe((data: any) => {
+            
+            this.goodMessage = true;
+        });
+
     }
 }
