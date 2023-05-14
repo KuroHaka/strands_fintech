@@ -14,31 +14,36 @@
 }
 
 * {
-    -webkit-user-select: none; /* Safari */        
--moz-user-select: none; /* Firefox */
--ms-user-select: none; /* IE10+/Edge */
-user-select: none; /* Standard */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
 }
 
 .upload {
     display: fixed;
     position: absolute;
     text-align: center;
-    bottom: 100px;
+    bottom: 30px;
     left: 0;
     right: 0;
 
     .button-container {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 50px;
+        width: 120px;
+        height: 120px;
+
         .mat-icon {
-            width: 90px !important;
-            height: 90px !important;
-            line-height: 90px !important;
-         }
-         .material-icons {
-            font-size: 90px !important;
-         }
+            width: 60px !important;
+            height: 60px !important;
+            line-height: 60px !important;
+        }
+
+        .material-icons {
+            font-size: 60px !important;
+        }
     }
 }
