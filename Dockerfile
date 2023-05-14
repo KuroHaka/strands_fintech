@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM node:latest
 
 # Create app directory
 WORKDIR /app
@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
     libtesseract-dev \
     python3 \
     python3-pip \
-    nodejs \
     npm
 
 RUN apt-get update
@@ -19,8 +18,11 @@ RUN apt-get install -y libgl1-mesa-glx
 
 RUN pip install -r requirements.txt
 
+RUN npm install -g @angular/cli
+
 # Bundle app source
 COPY . .
+CMD [ "./install.sh" ]
 
 EXPOSE 4200
-CMD [ "./launch.sh" ]
+ENTRYPOINT ["bash", "/app/launch.sh"]
